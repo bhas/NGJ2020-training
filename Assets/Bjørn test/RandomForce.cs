@@ -37,7 +37,7 @@ public class RandomForce : MonoBehaviour
 
     private void UpdateMovement()
     {
-        head.localPosition = new Vector3(activeForce.x * 0.1f, 0.7f, activeForce.z * 0.1f);
+        head.localPosition = new Vector3(balancePoint.x * 0.25f, 0.7f, balancePoint.z * 0.25f);
 
         var bodyPos = new Vector3(activeForce.x * 0.02f, 0, activeForce.z * 0.02f);
         transform.Translate(bodyPos, Space.World);
@@ -46,11 +46,11 @@ public class RandomForce : MonoBehaviour
     private void UpdateForces()
     {
         playerTarget = GetPlayerPoint();
-        playerPoint = MoveLineTowardsPoint(playerPoint, playerTarget, playerAcc);
-        balancePoint = MoveLineTowardsPoint(balancePoint, balanceTarget, balanceAcc);
+        playerPoint = MoveLineTowardsPoint(playerPoint, playerTarget, playerAcc, 0.1f);
+        balancePoint = MoveLineTowardsPoint(balancePoint, balanceTarget, balanceAcc, 0.1f);
 
         activeForce = balancePoint + playerPoint;
-        activeForce = Vector3.ClampMagnitude(activeForce, 1.2f);
+        activeForce = Vector3.ClampMagnitude(activeForce, 1.3f);
 
         UpdateForceLines();
     }
@@ -69,13 +69,13 @@ public class RandomForce : MonoBehaviour
     {
         var dx = Input.GetAxis("Horizontal");
         var dy = Input.GetAxis("Vertical");
-        return Vector3.ClampMagnitude(new Vector3(dx, 0, dy), 1);
+        return Vector3.ClampMagnitude(new Vector3(dx, 0, dy), 1) * 1.3f;
     }
 
-    private Vector3 MoveLineTowardsPoint(Vector3 point, Vector3 target, float acc)
+    private Vector3 MoveLineTowardsPoint(Vector3 point, Vector3 target, float acc, float maxSpeed)
     {
-        var dv = target - point;
-        return point + (dv * acc);
+        var dv = Vector3.ClampMagnitude((target - point) * acc, maxSpeed);
+        return point + dv;
     }
 
     public void RandomizeTarget()
@@ -83,5 +83,6 @@ public class RandomForce : MonoBehaviour
         balanceTarget = Random.insideUnitCircle;
         if (balanceTarget.magnitude < 0.25f)
             balanceTarget = balanceTarget.normalized * 0.25f;
+        balanceTarget = new Vector3(balanceTarget.x, 0, balanceTarget.y);
     }
 }
