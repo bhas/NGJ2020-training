@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class Beam : MonoBehaviour
 {
+    private LineRenderer line;
+    private float distance;
     public int beamIndex;
 
     // Start is called before the first frame update
     void Start()
     {
+        line = GetComponent<LineRenderer>();
+        distance = line.GetPosition(1).z;
     }
 
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 5))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
         {
-            Debug.DrawRay(transform.position, hit.point - transform.position, Color.red);
+            line.startColor = Color.red;
+            line.endColor = Color.red;
             SensorData.Instance.beamDistance[beamIndex] = hit.distance;
         } else
         {
-            Debug.DrawRay(transform.position, transform.forward * 5, Color.blue);
+            line.startColor = Color.white;
+            line.endColor = Color.white;
             SensorData.Instance.beamDistance[beamIndex] = 5;
         }
     }
