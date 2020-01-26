@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Beam : MonoBehaviour
 {
+    public int beamIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -14,14 +15,14 @@ public class Beam : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, 5))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 5))
         {
-            print("hit " + hit.point);
             Debug.DrawRay(transform.position, hit.point - transform.position, Color.red);
+            SensorData.Instance.beamDistance[beamIndex] = hit.distance;
         } else
         {
-            print("miss from " + transform.position + " - " + (transform.forward * 5));
             Debug.DrawRay(transform.position, transform.forward * 5, Color.blue);
+            SensorData.Instance.beamDistance[beamIndex] = 5;
         }
     }
 }
