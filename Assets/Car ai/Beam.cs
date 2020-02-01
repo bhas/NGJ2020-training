@@ -23,12 +23,13 @@ public class Beam : MonoBehaviour
         {
             line.startColor = Color.red;
             line.endColor = Color.red;
-            SensorData.Instance.beamDistance[beamIndex] = hit.distance;
-        } else
+            SensorData.Instance.beamDistance[beamIndex] = distance - hit.distance;
+        }
+        else
         {
             line.startColor = Color.white;
             line.endColor = Color.white;
-            SensorData.Instance.beamDistance[beamIndex] = 5;
+            SensorData.Instance.beamDistance[beamIndex] = 0;
         }
     }
 }
