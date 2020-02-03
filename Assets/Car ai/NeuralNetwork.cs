@@ -49,12 +49,12 @@ public class NeuralNetwork
 
 public class Layer
 {
-    public int Index; // For debugging only.
+    public int Id; // For debugging only.
     public Node[] Nodes;
 
-    public Layer(int numberOfNodes, int index)
+    public Layer(int numberOfNodes, int id)
     {
-        Index = index;
+        Id = id;
         Nodes = new Node[numberOfNodes];
         for (int i = 0; i < numberOfNodes; i++)
         {
