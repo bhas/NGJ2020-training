@@ -5,31 +5,33 @@ using UnityEngine;
 public class Beam : MonoBehaviour
 {
     private LineRenderer line;
-    private float distance;
-    public int beamIndex;
+    private float maxDistance;
 
     // Start is called before the first frame update
-    void Start()
+    public void SetBeamMaxDistance(float maxDistance)
     {
+        this.maxDistance = maxDistance;
         line = GetComponent<LineRenderer>();
-        distance = line.GetPosition(1).z;
+        line.SetPositions(new Vector3[] {
+            Vector3.zero,
+            Vector3.forward * maxDistance
+        });
     }
 
-    // Update is called once per frame
-    void Update()
+    public float Measure()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
             line.startColor = Color.red;
             line.endColor = Color.red;
-            SensorData.Instance.beamDistance[beamIndex] = distance - hit.distance;
+            return hit.distance;
         }
         else
         {
             line.startColor = Color.white;
             line.endColor = Color.white;
-            SensorData.Instance.beamDistance[beamIndex] = 0;
+            return maxDistance;
         }
     }
 }
