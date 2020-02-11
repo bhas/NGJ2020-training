@@ -1,27 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AiClient : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public string neuralNetworkFile;
+    public SensorData sensorData;
+    private Car car;
+    private NeuralNetwork network;
+
     void Start()
     {
-        
+        car = GetComponent<Car>();
+        network = new NeuralNetwork("Assets/Car ai/" + neuralNetworkFile);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Bot control
-        //float[] inputs = sensorData.beamDistances;
-        //float[] output = Network.Evaluate(inputs);
-        //float botCont = output[0];
+        car.Accelerate();
 
-        //if (Mathf.Abs(userCont) > 0.001f)
-        //    Turn(userCont);
-        //else
-        //    Turn(botCont);
+        if (network != null)
+        {
+            float[] inputs = sensorData.beamDistances;
+            float[] output = network.Evaluate(inputs);
+            float botCont = output[0];
+            botCont = Mathf.Clamp(botCont, -1f, 1f);
+            car.Turn(botCont);
+        }
+        
 
         //print("===================================================================================");
         //print("beam hits: " + string.Join(", ", inputs));
