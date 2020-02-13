@@ -25,7 +25,7 @@ public class Car : MonoBehaviour
         Deaccelerate(breaks / 1000f);
     }
 
-    public void Deaccelerate(float rate)
+    private void Deaccelerate(float rate)
     {
         if (speed > 0)
         {
@@ -45,6 +45,6 @@ public class Car : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed, Space.Self);
-        Deaccelerate(0.001f);
+        Deaccelerate(0.002f);
     }
 }
