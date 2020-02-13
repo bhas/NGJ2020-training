@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class AiClient : MonoBehaviour
 {
-    public string neuralNetworkFile;
     public SensorData sensorData;
     private Car car;
-    private NeuralNetwork network;
+    public NeuralNetwork network;
 
     void Start()
     {
         car = GetComponent<Car>();
-        network = new NeuralNetwork("Assets/Car ai/" + neuralNetworkFile);
     }
 
     // Update is called once per frame
