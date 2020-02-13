@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,14 @@ public class Car : MonoBehaviour
     public float breaks;
     public float handling;
     public float speed = 0;
+
+    public DateTime startTime;
+    public float secondsAlive;
+
+    public void Start()
+    {
+        startTime = DateTime.UtcNow;
+    }
 
     public void Accelerate()
     {
@@ -40,6 +49,12 @@ public class Car : MonoBehaviour
     public void Turn(float rate)
     {
         transform.Rotate(new Vector3(0, rate * handling, 0));
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        gameObject.SetActive(false);
+        secondsAlive = (float)(DateTime.UtcNow - startTime).TotalSeconds;
     }
 
     void Update()
