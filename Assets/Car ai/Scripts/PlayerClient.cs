@@ -13,7 +13,7 @@ public class PlayerClient : MonoBehaviour
 
     void LateUpdate()
     {
-        var dx = Input.GetAxis("Horizontal");
+        var dx = Input.GetAxisRaw("Horizontal");
         if (dx != 0)
             car.Turn(dx);
 

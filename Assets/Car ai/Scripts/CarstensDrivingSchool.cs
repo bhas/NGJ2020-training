@@ -123,7 +123,7 @@ public class Driver
 
     public Driver(System.Random rand, string path, int id, bool randomize = true)
     {
-        this.id = id;
+        this.Id = id;
         Level = 0;
         Score = 0;
         Brain = new NeuralNetwork(path);

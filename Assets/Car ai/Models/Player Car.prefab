@@ -48,7 +48,7 @@ MonoBehaviour:
   acceleration: 40
   maxSpeed: 20
   breaks: 40
-  handling: 9
+  handling: 2
   speed: 0
   secondsAlive: 0
 --- !u!114 &983160128

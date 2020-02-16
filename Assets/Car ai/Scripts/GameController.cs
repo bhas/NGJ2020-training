@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
         }
         carPool = new List<GameObject>();
 
-        for (int i = 0; i < numberOfCars; i++)
+        for (int i = 0; i < school.TeamCarsten.Drivers.Count; i++)
         {
             GameObject car = Instantiate(carPrefab, startLine.transform.position, startLine.transform.rotation);// Quaternion.Euler(0, -100, 0));
             car.name = "Car " + i;
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
             {
                 school.TeamCarsten.Drivers[i].Evaluate(carPool[i].GetComponent<Car>().secondsAlive);
             }
-            school.Write();
+            //school.Write();
             school.Select();
             school.Combine();
             SpawnCars();
