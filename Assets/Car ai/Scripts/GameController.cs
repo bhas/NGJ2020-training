@@ -8,42 +8,46 @@ public class GameController : MonoBehaviour
     public int numberOfCars;
     public CarstensDrivingSchool school;
     public GameObject carPrefab;
-    private List<GameObject> allCars = new List<GameObject>();
+    public GameObject startLine;
+    private List<GameObject> carPool = new List<GameObject>();
+
+    //BestneuralNetwork
 
     // Start is called before the first frame update
     void Start()
     {
-        school = new CarstensDrivingSchool("Assets/Car ai/", "template641.txt", numberOfCars);
+        school = new CarstensDrivingSchool("Assets/Car ai/Cars/", "template68421.txt", numberOfCars);
         SpawnCars();
     }
 
     private void SpawnCars()
     {
-        foreach(var car in allCars)
+        foreach(var car in carPool)
         {
             Destroy(car);
         }
-        allCars = new List<GameObject>();
+        carPool = new List<GameObject>();
 
         for (int i = 0; i < numberOfCars; i++)
         {
-            GameObject obj = Instantiate(carPrefab, new Vector3(76, 0.35f, -30), Quaternion.Euler(0, -100, 0));
-            obj.name = "Car " + i;
-            AiClient aiClient = obj.GetComponent<AiClient>();
+            GameObject car = Instantiate(carPrefab, startLine.transform.position, startLine.transform.rotation);// Quaternion.Euler(0, -100, 0));
+            car.name = "Car " + i;
+            AiClient aiClient = car.GetComponent<AiClient>();
             aiClient.network = school.TeamCarsten.Drivers[i].Brain;
-            allCars.Add(obj);
+            carPool.Add(car);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (allCars.All(car => !car.activeSelf))
+        if (carPool.All(car => !car.activeSelf))
         {
-            for (int i = 0; i < allCars.Count; i++)
+            for (int i = 0; i < carPool.Count; i++)
             {
-                school.TeamCarsten.Drivers[i].Score = allCars[i].GetComponent<Car>().secondsAlive;
+                school.TeamCarsten.Drivers[i].Evaluate(carPool[i].GetComponent<Car>().secondsAlive);
             }
+            school.Write();
             school.Select();
             school.Combine();
             SpawnCars();

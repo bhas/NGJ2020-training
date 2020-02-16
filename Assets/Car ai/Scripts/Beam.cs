@@ -20,8 +20,8 @@ public class Beam : MonoBehaviour
 
     public float Measure()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+        int layerMask = 1 << 9;
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxDistance, layerMask))
         {
             line.startColor = Color.red;
             line.endColor = Color.red;

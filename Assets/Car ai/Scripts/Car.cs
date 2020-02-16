@@ -21,17 +21,17 @@ public class Car : MonoBehaviour
 
     public void Accelerate()
     {
-        speed = Mathf.Min(speed + acceleration / 1000f, maxSpeed / 10f);
+        speed = Mathf.Min(speed + acceleration, maxSpeed);
     }
 
     public void Reverse()
     {
-        speed = Mathf.Max(speed - acceleration / 1000f, -maxSpeed / 10f);
+        speed = Mathf.Max(speed - acceleration, -maxSpeed);
     }
 
     public void Break()
     {
-        Deaccelerate(breaks / 1000f);
+        Deaccelerate(breaks);
     }
 
     private void Deaccelerate(float rate)
@@ -48,7 +48,7 @@ public class Car : MonoBehaviour
 
     public void Turn(float rate)
     {
-        transform.Rotate(new Vector3(0, rate * handling, 0));
+        transform.Rotate(new Vector3(0, rate * handling, 0));// * Time.deltaTime);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -59,7 +59,7 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.forward * speed, Space.Self);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         Deaccelerate(0.002f);
     }
 }

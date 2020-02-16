@@ -51,7 +51,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502497664279997}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -191,7 +191,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502498063864537}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -328,11 +328,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa75414696c9b4458b2486df26feed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 8
-  maxSpeed: 4
-  breaks: 8
-  handling: 1.8
+  acceleration: 40
+  maxSpeed: 20
+  breaks: 40
+  handling: 5
   speed: 0
+  secondsAlive: 0
 --- !u!114 &858727853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,8 +358,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9559565, z: 2.4054098}
-  m_Center: {x: -1.4812673e-10, y: 0.5854895, z: -0.0067768698}
+  m_Size: {x: 1, y: 0.79459345, z: 2.4054098}
+  m_Center: {x: -1.1809931e-10, y: 0.666171, z: -0.00677681}
 --- !u!54 &4797039014445324749
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -426,7 +427,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502498146597548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -619,7 +620,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502498726071677}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -759,7 +760,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502498794012098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -899,7 +900,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502499446571469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

@@ -123,7 +123,7 @@ public class Driver
 
     public Driver(System.Random rand, string path, int id, bool randomize = true)
     {
-        Id = id;
+        this.id = id;
         Level = 0;
         Score = 0;
         Brain = new NeuralNetwork(path);
@@ -142,33 +142,15 @@ public class Driver
             {
                 for (int k = 0; k < Brain.Layers[i].Nodes[j].Weights.Length; k++)
                 {
-                    float factor = (float)rand.NextDouble() < 0.5 ? (float)(rand.NextDouble() * 4 - 2) : 1;
-                    Brain.Layers[i].Nodes[j].Weights[k] = Brain.Layers[i].Nodes[j].Weights[k] * factor;
+                    if (0.5 > (float)rand.NextDouble())
+                    {
+                        float factor = (float)rand.NextDouble() < 0.5 ? (float)(rand.NextDouble() * 4 - 2) : 1;
+                        Brain.Layers[i].Nodes[j].Weights[k] = Brain.Layers[i].Nodes[j].Weights[k] * factor;
+                    }
                 }
             }
         }
     }
-
-    //public void Randomize(System.Random rand, float factor = 0.5f)
-    //{
-    //    //System.Random random = new System.Random();
-    //    for (int i = 0; i < Brain.Layers.Length; i++)
-    //    {
-    //        for (int j = 0; j < Brain.Layers[i].Nodes.Length; j++)
-    //        {
-    //            for (int k = 0; k < Brain.Layers[i].Nodes[j].Weights.Length; k++)
-    //            {
-    //                if (factor > (float)rand.NextDouble())
-    //                {
-    //                    // randomize 1
-    //                    Brain.Layers[i].Nodes[j].Weights[k] = (float)(rand.NextDouble() * 4 - 2) * Brain.Layers[i].Nodes[j].Weights[k];
-    //                    // randomize 2
-    //                    //Brain.Layers[i].Nodes[j].Weights[k] = (rand.NextDouble() < 0.5 ? -1 : 1) * (float)(rand.NextDouble() + 0.5) * Brain.Layers[i].Nodes[j].Weights[k];
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
 
     public float Evaluate(float score)
     {

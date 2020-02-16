@@ -5,7 +5,7 @@ using UnityEngine;
 public class SensorData : MonoBehaviour
 {
     [Header("Setup")]
-    public float beamMaxDistance = 5;
+    public float beamMaxDistance;
     private Beam[] beams;
 
     [Header("Data")]

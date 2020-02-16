@@ -23,9 +23,9 @@ public class AiClient : MonoBehaviour
         {
             float[] inputs = sensorData.beamDistances;
             float[] output = network.Evaluate(inputs);
-            float botCont = output[0];
-            botCont = Mathf.Clamp(botCont, -1f, 1f);
-            car.Turn(botCont);
+            float aiControl = output[0];
+            //aiControl = Mathf.Clamp(aiControl, -1f, 1f);
+            car.Turn(aiControl);
         }
         
 
