@@ -3,7 +3,32 @@ guid: 81aaf91b559a5114c9c5013aad7236cd
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 85148b0dcff3768478a9c17cb69efb59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: 6cfdcfd12d0bbde48843b29702a9ec3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: 62d622fb532574c4aa1b804d312dbe64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: back lights
+    second: {fileID: 2100000, guid: 63c5a0a5338d5924e85054721851227a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: car color
+    second: {fileID: 2100000, guid: 199eceea358e26d45bd53f92300e8f22, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
