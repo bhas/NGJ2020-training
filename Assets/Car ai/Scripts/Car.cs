@@ -10,6 +10,7 @@ public class Car : MonoBehaviour
     public float breaks;
     public float handling;
     public float speed = 0;
+    public float deaccelleration = 0.02f;
 
     public DateTime startTime;
     public float secondsAlive;
@@ -60,6 +61,6 @@ public class Car : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-        Deaccelerate(0.002f);
+        Deaccelerate(deaccelleration);
     }
 }
