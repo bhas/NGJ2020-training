@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
     public Transform target;
+    public Vector3 positionOffset;
+    public Vector3 lookOffset;
+    public float stiffness = 0.1f;
 
     // Update is called once per frame
     void Update()
     {
-        var targetPoint = target.TransformPoint(0, 20, -10);
-        transform.Translate((targetPoint - transform.position) * 0.2f, Space.World);
+        var targetPoint = target.TransformPoint(positionOffset);
+        transform.Translate((targetPoint - transform.position) * stiffness, Space.World);
         
-        targetPoint = target.TransformPoint(0, 0, 10);
+        targetPoint = target.TransformPoint(lookOffset);
         transform.LookAt(targetPoint);
     }
 }

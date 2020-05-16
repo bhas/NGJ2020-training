@@ -12,15 +12,17 @@ public class WheelSetup
 
 public class Car2 : MonoBehaviour
 {
-    public float inputX;
-    public float inputY;
+
+    public float maxMoterPower = 30f;
+    public float maxSteeringAngle = 25f;
+    private float inputX;
+    private float inputY;
 
     public WheelSetup fl;
     public WheelSetup fr;
     public WheelSetup bl;
     public WheelSetup br;
-    public float maxMoterPower = 30f;
-    public float maxSteeringAngle = 25f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +33,8 @@ public class Car2 : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        inputX = Input.GetAxis("Horizontal");
-        inputY = Input.GetAxis("Vertical");
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
 
         Steer();
         Accelerate();
@@ -57,6 +59,8 @@ public class Car2 : MonoBehaviour
         var motorPower = maxMoterPower * inputY;
         fl.collider.motorTorque = motorPower;
         fr.collider.motorTorque = motorPower;
+        bl.collider.motorTorque = motorPower;
+        br.collider.motorTorque = motorPower;
     }
 
     private void UpdateWheelPose(WheelSetup wheelSetup)
