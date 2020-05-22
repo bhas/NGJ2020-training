@@ -307,8 +307,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3656502498133730871}
-  m_LocalRotation: {x: 0, y: -0.77773875, z: 0, w: 0.62858766}
-  m_LocalPosition: {x: 91.44747, y: 0, z: -24.305288}
+  m_LocalRotation: {x: -0.00033105447, y: 0.9996169, z: 0.023995237, w: 0.013791741}
+  m_LocalPosition: {x: 90.996124, y: 0.47248602, z: -21.27475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3656502498516370300}
@@ -328,11 +328,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa75414696c9b4458b2486df26feed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 40
-  maxSpeed: 20
-  breaks: 40
-  handling: 2
+  acceleration: 0.5
+  startSpeed: 20
+  maxSpeed: 80
+  minSpeed: 10
+  breaks: 0.5
+  handling: 1
+  rate: 0
   speed: 0
+  turn: 0
+  deaccelleration: 0.02
+  timeAliveMax: 60
+  timeAlive: 0
+  distanceDriven: 0
+  scoreAccelerate: 0
+  scoreDecelerate: 0
   secondsAlive: 0
 --- !u!114 &858727853
 MonoBehaviour:

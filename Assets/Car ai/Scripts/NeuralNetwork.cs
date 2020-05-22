@@ -72,10 +72,10 @@ public class NeuralNetwork
         {
             output = Layers[i].Evaluate(output);
         }
-        for (int i = 0; i < output.Length; i++)
-        {
-            output[i] = Mathf.Clamp(output[i], -1, 1);
-        }
+        //for (int i = 0; i < output.Length; i++)
+        //{
+        //    output[i] = Mathf.Clamp(output[i], -1, 1);
+        //}
         return output;
     }
 }

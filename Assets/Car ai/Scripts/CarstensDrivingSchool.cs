@@ -1,100 +1,101 @@
-﻿using System.Collections;
+﻿// =============================================================================================================
+// Carstens Driving School :-)
+// =============================================================================================================
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CarstensDrivingSchool
 {
     public Team TeamCarsten;
-    private string Folder;
-    private string File;
+    public int Lessons;
+    public List<Data> Data;
+    public float BestPercentage;
+    private readonly string DrivingSchool = "Carstens Driving School/";
+    private readonly string RookieTeam = "Rookie Drivers/";
+    private readonly string ExpertTeam = "Expert Drivers/";
+    private string RookieDriver;
+    private string ExpertDriver;
     private System.Random Rand = new System.Random();
 
-    public CarstensDrivingSchool(string folder, string file, int size)
+    public CarstensDrivingSchool(string brain, int size, float bestpercentage = 10f)
     {
-        Folder = folder;
-        File = file;
-        TeamCarsten = new Team(Rand, folder + file, size);
+        Lessons = 0;
+        BestPercentage = bestpercentage;
+        ExpertTeam = DrivingSchool + ExpertTeam + System.DateTime.Now.ToString("yyyy-MM-dd HH.mm") + "/";
+        System.IO.Directory.CreateDirectory(ExpertTeam);
+        RookieDriver = DrivingSchool + RookieTeam + brain;
+        TeamCarsten = new Team(RookieDriver, size);
     }
 
-    public void Teach(int lessons, float duration)
+    public void Lesson()
     {
-        for (int i = 0; i < lessons; i++)
-        {
-            // Drive(duration);
-            Select();
-            Combine();
-        }
-        Best();
-    }
-
-    public void Select()
-    {
-        float averageScore = 0;
-        for (int i = 0; i < TeamCarsten.Size; i++)
-        {
-            averageScore += TeamCarsten.Drivers[i].Score;
-        }
-        averageScore = averageScore / TeamCarsten.Size;
-        int j = 0;
-        while (j < TeamCarsten.Size)
-        {
-            if (averageScore > TeamCarsten.Drivers[j].Score)
-            {
-                TeamCarsten.Drivers.RemoveAt(j);
-                TeamCarsten.Size--;
-            }
-            else
-            {
-                TeamCarsten.Drivers[j].Level++;
-            }
-            j++;
-        }
-    }
-
-    public void Combine()
-    {
-        //System.Random random = new System.Random();
-        int numberOfDrivers = TeamCarsten.Drivers.Count;
-        int driverId = numberOfDrivers;
-        while (driverId < TeamCarsten.Size)
-        {
-            Driver Senna = TeamCarsten.Drivers[Rand.Next(0, numberOfDrivers - 1)];
-            Driver Hamilton = TeamCarsten.Drivers[Rand.Next(0, numberOfDrivers - 1)];
-            if (Senna.Id != Hamilton.Id)
-            {
-                Driver Schumacher = new Driver(Rand, Folder + File, driverId, false);
-                for (int i = 0; i < Schumacher.Brain.Layers.Length; i++)
-                {
-                    for (int j = 0; j < Schumacher.Brain.Layers[i].Nodes.Length; j++)
-                    {
-                        for (int k = 0; k < Schumacher.Brain.Layers[i].Nodes[j].Weights.Length; k++)
-                        {
-                            float weight = (float)Rand.NextDouble() < 0.5 ? Senna.Brain.Layers[i].Nodes[j].Weights[k] : Hamilton.Brain.Layers[i].Nodes[j].Weights[k];
-                            Schumacher.Brain.Layers[i].Nodes[j].Weights[k] = weight;
-                        }
-                        Schumacher.Randomize(Rand);
-                    }
-                }
-                TeamCarsten.Drivers.Add(Schumacher);
-                driverId++;
-            }
-        }
-    }
-
-    public void Best()
-    {
-        int driverId = 0;
-        float bestScore = 0;
+        Lessons++;
+        int bestDrivers = System.Math.Max(2, (int)System.Math.Ceiling(BestPercentage / 100f * (float)TeamCarsten.Size));
+        TeamCarsten.Drivers = TeamCarsten.Drivers.OrderByDescending(driver => driver.Score).Skip(0).Take(bestDrivers).ToList();
         for (int i = 0; i < TeamCarsten.Drivers.Count; i++)
         {
-            if (TeamCarsten.Drivers[i].Score > bestScore)
+            TeamCarsten.Drivers[i].Id = i;
+            TeamCarsten.Drivers[i].Lessons = Lessons;
+        }
+        int id = bestDrivers;
+        while (id < TeamCarsten.Size)
+        {
+            Driver JamesHunt = TeamCarsten.Drivers[Rand.Next(0, bestDrivers)];
+            Driver NikiLauda = TeamCarsten.Drivers[Rand.Next(0, bestDrivers)];
+            Driver AyrtonSenna = new Driver(RookieDriver, id, Lessons);
+            for (int i = 0; i < AyrtonSenna.Brain.Layers.Length; i++)
             {
-                driverId = i;
-                bestScore = TeamCarsten.Drivers[i].Score;
+                for (int j = 0; j < AyrtonSenna.Brain.Layers[i].Nodes.Length; j++)
+                {
+                    for (int k = 0; k < AyrtonSenna.Brain.Layers[i].Nodes[j].Weights.Length; k++)
+                    {
+                        if (k < (int)(AyrtonSenna.Brain.Layers[i].Nodes[j].Weights.Length / 2))
+                        {
+                            AyrtonSenna.Brain.Layers[i].Nodes[j].Weights[k] = JamesHunt.Brain.Layers[i].Nodes[j].Weights[k];
+                        }
+                        else
+                        {
+                            AyrtonSenna.Brain.Layers[i].Nodes[j].Weights[k] = NikiLauda.Brain.Layers[i].Nodes[j].Weights[k];
+                        }
+                        AyrtonSenna.Brain.Layers[i].Nodes[j].Weights[k] *= (float)(Rand.NextDouble() * 4 - 2);
+                    }
+                }
+            }
+            TeamCarsten.Drivers.Add(AyrtonSenna);
+            id++;
+        }
+    }
+
+    private int Best()
+    {
+        float best = 0;
+        int index = 0;
+        for (int i = 0; i < TeamCarsten.Size; i++)
+        {
+            if (TeamCarsten.Drivers[i].Score > best)
+            {
+                best = TeamCarsten.Drivers[i].Score;
+                index = i;
             }
         }
-        string path = Folder + "driver" + driverId + ".txt";
-        TeamCarsten.Drivers[driverId].Brain.Write(path);
+        return index;
+    }
+
+    public void Write()
+    {
+        Write(TeamCarsten.Drivers[Best()]);
+    }
+
+    public void Write(Driver driver)
+    {
+        ExpertDriver = ExpertTeam;
+        //ExpertDriver += (driver.Score < 1 ? "score0" : "score") + (int)driver.Score;
+        ExpertDriver += (driver.Lessons < 10 ? "lessons0" : "lessons") + driver.Lessons;
+        ExpertDriver += (driver.Id < 10 ? "driver0" : "driver") + driver.Id;
+        ExpertDriver += RookieDriver.Substring(RookieDriver.IndexOf("brain"));
+        driver.Brain.Write(ExpertDriver);
     }
 }
 
@@ -102,59 +103,66 @@ public class Team
 {
     public int Size;
     public List<Driver> Drivers = new List<Driver>();
+    private System.Random Rand = new System.Random();
 
-    public Team(System.Random rand, string path, int size)
+    public Team(string path, int size)
     {
         Size = size;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < Size; i++)
         {
-            Driver driver = new Driver(rand, path, i);
+            Driver driver = new Driver(path, i);
+            Initialize(driver);
             Drivers.Add(driver);
         }
+    }
+
+    private void Initialize(Driver driver)
+    {
+        foreach (Layer layer in driver.Brain.Layers)
+        {
+            foreach (Node node in layer.Nodes)
+            {
+                for (int j = 0; j < node.Weights.Length; j++)
+                {
+                    node.Weights[j] = (float)(Rand.NextDouble() * 0.4 - 0.2);
+                }
+            }
+        }
+
     }
 }
 
 public class Driver
 {
     public int Id;
-    public int Level;
+    public int Lessons;
     public float Score;
     public NeuralNetwork Brain;
 
-    public Driver(System.Random rand, string path, int id, bool randomize = true)
+    public Driver(string brain, int id, int lessons = 0, float score = 0)
     {
-        this.Id = id;
-        Level = 0;
-        Score = 0;
-        Brain = new NeuralNetwork(path);
-        if (randomize)
-        {
-            Randomize(rand);
-        }
+        Id = id;
+        Lessons = lessons;
+        Score = score;
+        Brain = new NeuralNetwork(brain);
     }
 
-    public void Randomize(System.Random rand)
+    public void Evaluate(float input)
     {
-        //System.Random random = new System.Random();
-        for (int i = 0; i < Brain.Layers.Length; i++)
-        {
-            for (int j = 0; j < Brain.Layers[i].Nodes.Length; j++)
-            {
-                for (int k = 0; k < Brain.Layers[i].Nodes[j].Weights.Length; k++)
-                {
-                    if (0.5 > (float)rand.NextDouble())
-                    {
-                        float factor = (float)rand.NextDouble() < 0.5 ? (float)(rand.NextDouble() * 4 - 2) : 1;
-                        Brain.Layers[i].Nodes[j].Weights[k] = Brain.Layers[i].Nodes[j].Weights[k] * factor;
-                    }
-                }
-            }
-        }
+        Score = 1000 * input;
     }
+}
 
-    public float Evaluate(float score)
+public class Data
+{
+    public float Time;
+    public float Score;
+    public int Lessons;
+
+    public void Collect(Driver driver)
     {
-        Score = score; // calculate Value from e.g. distance driven, remove from here and update score externally
-        return Score;
+        Time = UnityEngine.Time.time;
+        Score = driver.Score;
+        Lessons = driver.Lessons;
     }
 }

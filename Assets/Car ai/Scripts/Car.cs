@@ -6,14 +6,39 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     public float acceleration;
+    public float startSpeed;
     public float maxSpeed;
+    public float minSpeed;
     public float breaks;
     public float handling;
-    public float speed = 0;
+    public float rate = 0f;
+    public float speed = 0f;
+    public float turn = 0f;
     public float deaccelleration = 0.02f;
+
+    public float timeAliveMax; // approximately 31 seconds to complete track in "Test scene 1", set in Unity
+    public float timeAlive = 0f;
+    public float distanceDriven = 0f;
+    public float scoreAccelerate = 0f;
+    public float scoreDecelerate = 0f;
 
     public DateTime startTime;
     public float secondsAlive;
+
+    public void Speed(float rate)
+    {
+        this.rate = rate;
+        if (rate > 0)
+        {
+            rate *= acceleration;
+            speed = Mathf.Min(speed + rate, maxSpeed);
+        }
+        else
+        {
+            rate *= -breaks;
+            Deaccelerate(rate);
+        }
+    }
 
     public void Start()
     {
@@ -39,17 +64,18 @@ public class Car : MonoBehaviour
     {
         if (speed > 0)
         {
-            speed = Mathf.Max(speed - rate, 0);
+            speed = Mathf.Max(speed - rate, minSpeed);
         }
         else
         {
-            speed = Mathf.Min(speed + rate, 0);
+            speed = Mathf.Min(speed + rate, minSpeed);
         }
     }
 
     public void Turn(float rate)
     {
-        transform.Rotate(new Vector3(0, rate * handling, 0));// * Time.deltaTime);
+        turn = Mathf.Abs(speed) < 0.001 ? 0 : rate;
+        transform.Rotate(new Vector3(0, turn * handling, 0));// * Time.deltaTime);
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -61,6 +87,6 @@ public class Car : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-        Deaccelerate(deaccelleration);
+        //Deaccelerate(deaccelleration);
     }
 }
