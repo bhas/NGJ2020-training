@@ -13,8 +13,12 @@ public class WheelSetup
 public class Car2 : MonoBehaviour
 {
 
-    public float maxMotorPower = 300f;
-    public float maxSteeringAngle = 35f;
+    public float maxMotorTorque = 1000f;
+    public float motorTorqueRate = 1000f;
+    public float currentMotorTorque;
+    public float maxSteeringAngle = 40f;
+    public float steeringAngleRate = 100f;
+    public float currentSteeringAngle;
     private float inputX;
     private float inputY;
 
@@ -34,7 +38,7 @@ public class Car2 : MonoBehaviour
     void FixedUpdate()
     {
         inputX = Input.GetAxis("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
+        inputY = Input.GetAxis("Vertical");
 
         Steer();
         Accelerate();
@@ -49,18 +53,37 @@ public class Car2 : MonoBehaviour
 
     private void Steer()
     {
-        var steerAngle = maxSteeringAngle * inputX;
-        fl.collider.steerAngle = steerAngle;
-        fr.collider.steerAngle = steerAngle;
+        float targetSteeringAngle = maxSteeringAngle * inputX;
+        float deltaSteeringAngle = steeringAngleRate * Time.deltaTime;
+        currentSteeringAngle = Step(currentSteeringAngle, targetSteeringAngle, deltaSteeringAngle);
+        fl.collider.steerAngle = currentSteeringAngle;
+        fr.collider.steerAngle = currentSteeringAngle;
     }
 
     private void Accelerate()
     {
-        var motorPower = maxMotorPower * inputY;
-        fl.collider.motorTorque = motorPower;
-        fr.collider.motorTorque = motorPower;
-        bl.collider.motorTorque = motorPower;
-        br.collider.motorTorque = motorPower;
+        float targetMotorTorque = maxMotorTorque * inputY;
+        float deltaMotorTorque = motorTorqueRate * Time.deltaTime;
+        currentMotorTorque = Step(currentMotorTorque, targetMotorTorque, deltaMotorTorque);
+        //fl.collider.motorTorque = currentMotorTorque;
+        //fr.collider.motorTorque = currentMotorTorque;
+        bl.collider.motorTorque = currentMotorTorque;
+        br.collider.motorTorque = currentMotorTorque;
+    }
+
+    private static float Step(float currentValue, float targetValue, float rate)
+    {
+        if (targetValue > currentValue)
+        {
+            var delta = Mathf.Min(rate, targetValue - currentValue);
+            currentValue += delta;
+        }
+        if (targetValue < currentValue)
+        {
+            var delta = Mathf.Min(rate, currentValue - targetValue);
+            currentValue -= delta;
+        }
+        return currentValue;
     }
 
     private void UpdateWheelPose(WheelSetup wheelSetup)

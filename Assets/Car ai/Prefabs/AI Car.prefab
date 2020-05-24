@@ -329,11 +329,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 0.5
-  startSpeed: 20
+  startSpeed: 40
   maxSpeed: 80
-  minSpeed: 10
+  minSpeed: 20
   breaks: 0.5
-  handling: 1
+  handling: 1.5
   rate: 0
   speed: 0
   turn: 0
