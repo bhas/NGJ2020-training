@@ -1897,7 +1897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b658814c55e08e441ac4db7b949c9c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 377140048}
+  positionOffset: {x: -4, y: 3, z: -6}
+  lookOffset: {x: 0, y: 0, z: 2}
+  stiffness: 0.04
 --- !u!81 &1567795543
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2496,6 +2499,380 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820658632}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1870637842
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6539471676227182606, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 80000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471676762518100, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 80000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645809, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_Name
+      value: Car physics
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6786727
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7344409
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -85.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645810, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorPower
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: steeringAngleRate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxSteeringAngle
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: motorPowerRate
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].value
+      value: 0.0009237975
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].time
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].inSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].outSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].inWeight
+      value: 0.049248766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[2].value
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[2].inSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[2].outSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[2].inWeight
+      value: 0.103539266
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].time
+      value: 0.0012464924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxTorqueCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[0].time
+      value: 0.0012464924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[0].value
+      value: 0.0009237975
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].inSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].outSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].inWeight
+      value: 0.049248766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[2].value
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[2].inSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[2].outSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorque.m_Curve.Array.data[2].inWeight
+      value: 0.103539266
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].time
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].inSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].outSlope
+      value: -0.030352375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].inWeight
+      value: 0.049248766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[2].value
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[2].inSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[2].outSlope
+      value: -7.5969687
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: maxMotorTorqueCurve.m_Curve.Array.data[2].inWeight
+      value: 0.103539266
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677445645821, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: motorTorqueRate
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677491322219, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 80000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539471677777721936, guid: 032d8ab3ccb848341ace38081a8afb44,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 80000
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 032d8ab3ccb848341ace38081a8afb44, type: 3}
 --- !u!1001 &1891040620
 PrefabInstance:
   m_ObjectHideFlags: 0
